@@ -33,6 +33,7 @@ import { Component, OnInit } from '@angular/core';
                 (input)="refMessage = refMessageInput.value"
                 #refMessageInput />
             <p>{{ refMessage }}</p>
+            <donut-list></donut-list>
         </div>
     `,
     styles: [
