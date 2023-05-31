@@ -3,10 +3,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DonutListComponent } from './containers/donut-list/donut-list.component';
+import { DonutCardComponent } from './components/donut-card/donut-card.component';
 
 @NgModule({
-    declarations: [DonutListComponent],
+    declarations: [DonutListComponent, DonutCardComponent],
     imports: [CommonModule],
-    exports: [DonutListComponent],
+    exports: [DonutListComponent, DonutCardComponent],
 })
 export class AdminModule {}
