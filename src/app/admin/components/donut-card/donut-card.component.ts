@@ -10,7 +10,15 @@ import { Donut } from '../../models/donut.model';
         <div
             class="donut-card"
             [style.border]="donut.promo ? '2px solid gray' : 'none'"
-            [style.background-color]="donut.promo ? 'gray' : 'none'">
+            [ngStyle]="{
+                'font-size.px': donut.promo ? 20 : 16
+            }"
+            [ngStyle]="setStyles()"
+            [class.donut-card-promo]="donut.promo"
+            [class.donut-card-new]="true"
+            [ngClass]="{
+                'donut-card-not-promo': !donut.promo
+            }">
             <!-- we can use background-color instead backgroundColor and so on -->
 
             <!-- JsonPipe -->
@@ -50,17 +58,21 @@ import { Donut } from '../../models/donut.model';
                     transform: translateY(-3px);
                 }
 
+                &-promo {
+                    color: white;
+                }
+
                 &-icon {
                     width: 50px;
                     margin-right: 10px;
                 }
 
                 &-name {
-                    font-size: 16px;
+                    //font-size: 16px;
                 }
 
                 &-price {
-                    font-size: 14px;
+                    //font-size: 14px;
                     color: #c14583;
                 }
             }
@@ -69,4 +81,14 @@ import { Donut } from '../../models/donut.model';
 })
 export class DonutCardComponent {
     @Input() donut!: Donut;
+
+    setStyles = () => {
+        if (!this.donut.promo) {
+            return;
+        }
+        return {
+            'box-shadow': '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
+            background: 'gray',
+        };
+    };
 }
