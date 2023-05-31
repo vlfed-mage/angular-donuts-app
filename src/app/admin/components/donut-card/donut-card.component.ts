@@ -33,7 +33,8 @@ import { Donut } from '../../models/donut.model';
                     {{ donut.name }}
                 </p>
                 <p class="donut-card-price">
-                    {{ donut.price }}
+                    {{ donut.price / 100 | currency : 'USD' : 'symbol' }}
+                    <!-- https://angular.io/guide/pipes-overview -->
                 </p>
             </div>
         </div>
