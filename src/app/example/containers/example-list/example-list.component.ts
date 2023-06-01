@@ -2,15 +2,16 @@
 // --dry-run you can use this flag for testing creation
 
 import { Component, OnInit } from '@angular/core';
-import { Donut } from '../../models/donut.model';
+import { Donut } from '../../models/example.model';
 
 @Component({
-    selector: 'donut-list',
+    selector: 'example-list',
     template: `
         <ng-container *ngIf="donuts.length; else nothing">
-            <donut-card
+            <example-card
                 *ngFor="let donut of donuts; trackBy: trackById"
-                [donut]="donut"></donut-card>
+                [donut]="donut">
+            </example-card>
 
             <!-- it's the same -->
             <!-- but we can pass data deeper -->
@@ -26,7 +27,7 @@ import { Donut } from '../../models/donut.model';
                 {{ i }}
                 {{ e }}
                 {{ o }}
-                <donut-card [donut]="donut"></donut-card>
+                <example-card [donut]="donut"></example-card>
             </ng-template>
 
             <div
@@ -49,7 +50,7 @@ import { Donut } from '../../models/donut.model';
     `,
     styles: [],
 })
-export class DonutListComponent implements OnInit {
+export class ExampleListComponent implements OnInit {
     donuts!: Donut[];
 
     ngOnInit(): void {
