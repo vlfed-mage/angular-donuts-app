@@ -12,8 +12,8 @@ import { Donut } from '../../models/donut.model';
                 *ngFor="let donut of donuts; trackBy: trackById"
                 [donut]="donut"></donut-card>
 
-            <!-- it's the same as -->
-            <!-- but we can pass other data deeper -->
+            <!-- it's the same -->
+            <!-- but we can pass data deeper -->
 
             <ng-template
                 ngFor
@@ -28,6 +28,20 @@ import { Donut } from '../../models/donut.model';
                 {{ o }}
                 <donut-card [donut]="donut"></donut-card>
             </ng-template>
+
+            <div
+                *ngFor="
+                    let donut of donuts;
+                    trackBy: trackById;
+                    index as i;
+                    odd as o;
+                    even as e
+                "
+                [style.color]="e ? 'red' : 'blue'">
+                {{ i + 1 }}
+                {{ o }}
+                {{ e }}
+            </div>
         </ng-container>
         <ng-template #nothing>
             <p>Nothing is here...</p>
@@ -45,6 +59,7 @@ export class DonutListComponent implements OnInit {
                 name: 'Just Chocolate',
                 icon: 'just-chocolate',
                 price: 119,
+                promo: 'limited',
                 description: 'For the pure chocoholic.',
             },
             {
@@ -52,7 +67,7 @@ export class DonutListComponent implements OnInit {
                 name: 'Glazed Fudge',
                 icon: 'glazed-fudge',
                 price: 129,
-                promo: true,
+                promo: 'new',
                 description: 'Sticky perfection.',
             },
             {
@@ -61,6 +76,20 @@ export class DonutListComponent implements OnInit {
                 icon: 'caramel-swirl',
                 price: 129,
                 description: 'Chocolate drizzled with caramel.',
+            },
+            {
+                id: '8amkZ9',
+                name: 'Sour Supreme',
+                icon: 'sour-supreme',
+                price: 139,
+                description: 'For the sour advocate.',
+            },
+            {
+                id: 'l3M0nz',
+                name: 'Zesty Lemon',
+                icon: 'zesty-lemon',
+                price: 129,
+                description: 'Delicious lucious lemon.',
             },
         ];
     }
