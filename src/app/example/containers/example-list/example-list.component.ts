@@ -14,7 +14,7 @@ import { Donut } from '../../models/example.model';
             </example-card>
 
             <!-- it's the same -->
-            <!-- but we can pass data deeper -->
+            <!-- but we can pass more data deeper -->
 
             <ng-template
                 ngFor
@@ -27,7 +27,7 @@ import { Donut } from '../../models/example.model';
                 {{ i }}
                 {{ e }}
                 {{ o }}
-                <example-card [donut]="donut"></example-card>
+                <example-card [donut]="donut" [e]="e"></example-card>
             </ng-template>
 
             <div
