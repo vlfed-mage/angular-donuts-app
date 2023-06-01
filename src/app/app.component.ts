@@ -67,7 +67,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
     message!: string;
     newMessage!: string;
-    refMessage!: string;
+    // refMessage!: string;
 
     ngOnInit() {
         this.message = 'One-way-data-flow';

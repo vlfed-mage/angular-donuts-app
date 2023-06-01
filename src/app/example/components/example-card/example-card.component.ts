@@ -58,6 +58,7 @@ import { Donut } from '../../models/example.model';
                 </p>
                 <p class="donut-card-price">
                     {{ donut.price / 100 | currency : 'USD' : 'symbol' }}
+                    {{ e }}
                     <!-- https://angular.io/guide/pipes-overview -->
                 </p>
             </div>
@@ -115,6 +116,7 @@ import { Donut } from '../../models/example.model';
 })
 export class ExampleCardComponent {
     @Input() donut!: Donut;
+    @Input() e!: boolean;
 
     setStyles = () => {
         if (!this.donut.promo) {
