@@ -1,10 +1,10 @@
 // ng generate component admin/components/donut-card
 
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Donut } from '../../models/donut.model';
+import { Donut } from '../../models/example.model';
 
 @Component({
-    selector: 'donut-card',
+    selector: 'example-card',
     encapsulation: ViewEncapsulation.Emulated, // https://angular.io/guide/view-encapsulation
     template: `
         <div
@@ -113,7 +113,7 @@ import { Donut } from '../../models/donut.model';
         `,
     ],
 })
-export class DonutCardComponent {
+export class ExampleCardComponent {
     @Input() donut!: Donut;
 
     setStyles = () => {
