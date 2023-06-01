@@ -4,8 +4,8 @@ import { DonutListComponent } from './containers/donut-list/donut-list.component
 import { DonutCardComponent } from './components/donut-card/donut-card.component';
 
 @NgModule({
-  declarations: [DonutListComponent, DonutCardComponent],
-  imports: [CommonModule],
-  exports: [DonutListComponent],
+    declarations: [DonutListComponent, DonutCardComponent],
+    imports: [CommonModule],
+    exports: [DonutListComponent],
 })
 export class AdminModule {}
