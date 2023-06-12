@@ -1,4 +1,4 @@
-// ng generate component admin/components/donut-card
+// ng generate component admin/components/example-card
 
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Donut } from '../../models/example.model';

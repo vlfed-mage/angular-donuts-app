@@ -1,3 +1,5 @@
+// ng generate component admin/containers/example-single
+
 import { Component } from '@angular/core';
 
 @Component({
