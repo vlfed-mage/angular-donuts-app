@@ -44,14 +44,24 @@ import { Component } from '@angular/core';
                     <span>Limited</span>
                 </label>
             </div>
+            <label>
+                <span>Description</span>
+                <textarea
+                    name="description"
+                    class="input input--textarea"
+                    ngModel></textarea>
+            </label>
 
             <pre>{{ form.value | json }}</pre>
             <!--
-            {
-                "name": "",
-                "price": ""
-            }
-        -->
+                {
+                    "name": "",
+                    "icon": "",
+                    "price": "",
+                    "promo": "",
+                    "description": ""
+                }
+            -->
         </form>
     `,
     styles: [
