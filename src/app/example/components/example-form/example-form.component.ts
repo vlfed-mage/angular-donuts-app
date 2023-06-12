@@ -5,10 +5,21 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'example-form',
     template: `
-        <form class="donut-form" #form="ngForm">
+        <form
+            class="donut-form"
+            #form="ngForm"
+            xmlns="http://www.w3.org/1999/html">
             <label>
                 <span>Name</span>
                 <input type="text" name="name" class="input" ngModel />
+            </label>
+            <label>
+                <span>Icon</span>
+                <select name="icon" class="input input--select" ngModel>
+                    <option *ngFor="let icon of icons" [ngValue]="icon">
+                        {{ icon }}
+                    </option>
+                </select>
             </label>
             <label>
                 <span>Price</span>
@@ -36,11 +47,11 @@ import { Component } from '@angular/core';
 
             <pre>{{ form.value | json }}</pre>
             <!--
-                {
-                    "name": "",
-                    "price": ""
-                }
-            -->
+            {
+                "name": "",
+                "price": ""
+            }
+        -->
         </form>
     `,
     styles: [
@@ -73,4 +84,14 @@ import { Component } from '@angular/core';
         `,
     ],
 })
-export class ExampleFormComponent {}
+export class ExampleFormComponent {
+    icons: string[] = [
+        'caramel-swirl',
+        'glazed-fudge',
+        'just-chocolate',
+        'sour-supreme',
+        'strawberry-glaze',
+        'vanilla-sundae',
+        'zesty-lemon',
+    ];
+}
