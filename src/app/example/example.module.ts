@@ -2,6 +2,8 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// need for using #form="ngForm" in example-form.component.ts
+import { FormsModule } from '@angular/forms';
 
 // containers
 import { ExampleListComponent } from './containers/example-list/example-list.component';
@@ -18,7 +20,7 @@ import { ExampleFormComponent } from './components/example-form/example-form.com
         ExampleSingleComponent,
         ExampleFormComponent,
     ],
-    imports: [CommonModule],
+    imports: [CommonModule, FormsModule],
     exports: [ExampleListComponent, ExampleSingleComponent],
 })
 export class ExampleModule {}
