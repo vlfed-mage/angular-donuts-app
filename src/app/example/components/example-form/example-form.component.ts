@@ -2,7 +2,7 @@
 
 // dumb component
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Donut } from '../../models/example.model';
 
@@ -18,7 +18,7 @@ import { Donut } from '../../models/example.model';
                     class="input"
                     minlength="5"
                     required
-                    ngModel
+                    [ngModel]="donut.name"
                     [ngModelOptions]="{
                         updateOn: 'blur'
                     } // change' (by default) | 'blur' | 'submit'"
@@ -33,7 +33,7 @@ import { Donut } from '../../models/example.model';
                     undo the changes): {{ name.pristine }}
                 </p>
                 <p>
-                    dirty (value's been entered, even after undo the change):
+                    dirty (value's been entered, even after undo the changes):
                     {{ name.dirty }}
                 </p>
 
@@ -56,7 +56,7 @@ import { Donut } from '../../models/example.model';
                     name="icon"
                     class="input input--select"
                     required
-                    ngModel
+                    [ngModel]="donut.icon"
                     #icon="ngModel">
                     <option *ngFor="let icon of icons" [ngValue]="icon">
                         {{ icon }}
@@ -75,7 +75,7 @@ import { Donut } from '../../models/example.model';
                     name="price"
                     class="input"
                     required
-                    ngModel
+                    [ngModel]="donut.price"
                     #price="ngModel" />
                 <ng-container *ngIf="price.invalid && price.touched">
                     <div
@@ -93,7 +93,7 @@ import { Donut } from '../../models/example.model';
                         name="promo"
                         required
                         [value]="undefined"
-                        ngModel />
+                        [ngModel]="donut.promo" />
                     <span>None</span>
                 </label>
                 <label>
@@ -102,7 +102,7 @@ import { Donut } from '../../models/example.model';
                         name="promo"
                         value="new"
                         required
-                        ngModel />
+                        [ngModel]="donut.promo" />
                     <span>New</span>
                 </label>
                 <label>
@@ -111,7 +111,7 @@ import { Donut } from '../../models/example.model';
                         name="promo"
                         value="limited"
                         required
-                        ngModel />
+                        [ngModel]="donut.promo" />
                     <span>Limited</span>
                 </label>
             </div>
@@ -121,7 +121,7 @@ import { Donut } from '../../models/example.model';
                     name="description"
                     class="input input--textarea"
                     required
-                    ngModel
+                    [ngModel]="donut.description"
                     #description="ngModel"></textarea>
                 <ng-container
                     *ngIf="description.invalid && description.touched">
@@ -149,7 +149,7 @@ import { Donut } from '../../models/example.model';
             </div>
 
             <pre>form.submitted: {{ form.submitted }}</pre>
-            <pre>{{ form.value | json }}</pre>
+            <pre>form.value: {{ form.value | json }}</pre>
             <!--
                 {
                     "name": "",
@@ -159,11 +159,12 @@ import { Donut } from '../../models/example.model';
                     "description": ""
                 }
             -->
-            <pre>{{ form.status | json }}</pre>
+            <pre>donut: {{ donut | json }}</pre>
+            <pre>form.status: {{ form.status | json }}</pre>
             <!--
                 "INVALID" / "VALID"
             -->
-            <pre>{{ form.valid | json }}</pre>
+            <pre>form.valid: {{ form.valid | json }}</pre>
             <!--
                 true / false
             -->
@@ -211,6 +212,7 @@ import { Donut } from '../../models/example.model';
     ],
 })
 export class ExampleFormComponent {
+    @Input() donut!: Donut;
     @Output() create = new EventEmitter<Donut>();
 
     icons: string[] = [
