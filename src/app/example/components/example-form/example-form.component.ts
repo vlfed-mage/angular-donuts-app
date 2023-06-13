@@ -19,22 +19,22 @@ import { Component } from '@angular/core';
                     required
                     ngModel
                     #name="ngModel" />
-                <pre>Possible cases</pre>
-                <pre>valid: {{ name.valid }}</pre>
-                <pre>invalid: {{ name.invalid }}</pre>
-                <pre>touched (was in focus): {{ name.touched }}</pre>
-                <pre>untouched (wasn't in focus): {{ name.untouched }}</pre>
-                <pre>
+                <p>Possible cases</p>
+                <p>valid: {{ name.valid }}</p>
+                <p>invalid: {{ name.invalid }}</p>
+                <p>touched (was in focus): {{ name.touched }}</p>
+                <p>untouched (wasn't in focus): {{ name.untouched }}</p>
+                <p>
                     pristine (незайманий) (value hasn't been entered, even after
                     undo the changes): {{ name.pristine }}
-                </pre
-                >
-                <pre>
+                </p>
+                <p>
                     dirty (value's been entered, even after undo the change):
                     {{ name.dirty }}
-                </pre
-                >
+                </p>
+
                 <br />
+
                 <ng-container *ngIf="name.invalid && name.touched">
                     <div class="donut-form-error" *ngIf="name.errors?.required">
                         Name is required
