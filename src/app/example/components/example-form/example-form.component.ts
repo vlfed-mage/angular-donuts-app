@@ -18,7 +18,7 @@ import { NgForm } from '@angular/forms';
                     ngModel
                     [ngModelOptions]="{
                         updateOn: 'blur'
-                    } // change' | 'blur' | 'submit'"
+                    } // change' (by default) | 'blur' | 'submit'"
                     #name="ngModel" />
                 <p>Possible cases</p>
                 <p>valid: {{ name.valid }}</p>
@@ -133,6 +133,19 @@ import { NgForm } from '@angular/forms';
                 <!-- [disabled]="form.invalid"-->
                 Submit
             </button>
+            <button
+                type="button"
+                class="btn btn--gray"
+                (click)="form.resetForm()">
+                Reset form
+            </button>
+            <div
+                class="donut-form-working"
+                *ngIf="form.valid && form.submitted">
+                Working...
+            </div>
+
+            <pre>form.submitted: {{ form.submitted }}</pre>
             <pre>{{ form.value | json }}</pre>
             <!--
                 {
@@ -178,6 +191,12 @@ import { NgForm } from '@angular/forms';
                             margin: 0 0 0 4px;
                         }
                     }
+                }
+
+                &-working {
+                    font-size: 12px;
+                    font-style: italic;
+                    margin: 10px 0;
                 }
 
                 &-error {
