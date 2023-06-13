@@ -17,16 +17,13 @@ import { Donut } from '../../models/donut.model';
                 <p class="donut-card-name">
                     {{ donut.name }}
                     <ng-container [ngSwitch]="donut.promo">
-                        <span class="donut-card-label">
-                            <ng-template [ngSwitchCase]="'new'">
-                                NEW
-                            </ng-template>
-                            <ng-template [ngSwitchCase]="'limited'">
-                                LIMITED
-                            </ng-template>
-                            <ng-template ngSwitchDefault>
-                                Nothing special...
-                            </ng-template>
+                        <span *ngSwitchCase="'new'" class="donut-card-label">
+                            NEW
+                        </span>
+                        <span
+                            *ngSwitchCase="'limited'"
+                            class="donut-card-label">
+                            LIMITED
                         </span>
                     </ng-container>
                 </p>
@@ -46,15 +43,19 @@ import { Donut } from '../../models/donut.model';
                 margin-bottom: 5px;
                 padding: 5px 15px;
                 transition: transform 0.2s ease-in-out;
+
                 &:hover {
                     transform: translateY(-3px);
                 }
+
                 &-promo {
                     border: 2px solid #eee;
                 }
+
                 &-name {
                     font-size: 16px;
                 }
+
                 &-label {
                     border: 1px solid #c14583;
                     border-radius: 4px;
@@ -63,10 +64,12 @@ import { Donut } from '../../models/donut.model';
                     font-size: 12px;
                     color: #c14583;
                 }
+
                 &-price {
                     font-size: 14px;
                     color: #c14583;
                 }
+
                 &-icon {
                     width: 50px;
                     margin-right: 10px;
