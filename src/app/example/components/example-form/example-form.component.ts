@@ -1,7 +1,10 @@
 // ng generate component admin/components/example-form
 
-import { Component } from '@angular/core';
+// dumb component
+
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Donut } from '../../models/example.model';
 
 @Component({
     selector: 'example-form',
@@ -208,6 +211,8 @@ import { NgForm } from '@angular/forms';
     ],
 })
 export class ExampleFormComponent {
+    @Output() create = new EventEmitter<Donut>();
+
     icons: string[] = [
         'caramel-swirl',
         'glazed-fudge',
@@ -220,7 +225,7 @@ export class ExampleFormComponent {
 
     handleSubmit(f: NgForm) {
         if (f.valid) {
-            console.log(f.value);
+            this.create.emit(f.value);
         } else {
             f.form.markAllAsTouched();
         }
