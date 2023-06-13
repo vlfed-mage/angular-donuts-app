@@ -1,14 +1,12 @@
 // ng generate component admin/components/example-form
 
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'example-form',
     template: `
-        <form
-            class="donut-form"
-            #form="ngForm"
-            xmlns="http://www.w3.org/1999/html">
+        <form class="donut-form" #form="ngForm" (ngSubmit)="handleSubmit(form)">
             <label>
                 <span>Name</span>
                 <input
@@ -52,11 +50,17 @@ import { Component } from '@angular/core';
                     name="icon"
                     class="input input--select"
                     required
-                    ngModel>
+                    ngModel
+                    #icon="ngModel">
                     <option *ngFor="let icon of icons" [ngValue]="icon">
                         {{ icon }}
                     </option>
                 </select>
+                <ng-container *ngIf="icon.invalid && icon.touched">
+                    <div class="donut-form-error" *ngIf="icon.errors?.required">
+                        Icon is required
+                    </div>
+                </ng-container>
             </label>
             <label>
                 <span>Price</span>
@@ -65,7 +69,15 @@ import { Component } from '@angular/core';
                     name="price"
                     class="input"
                     required
-                    ngModel />
+                    ngModel
+                    #price="ngModel" />
+                <ng-container *ngIf="price.invalid && price.touched">
+                    <div
+                        class="donut-form-error"
+                        *ngIf="price.errors?.required">
+                        Price is required
+                    </div>
+                </ng-container>
             </label>
             <div class="donut-form-radios">
                 <p class="donut-form-radios-label">Promo:</p>
@@ -103,9 +115,21 @@ import { Component } from '@angular/core';
                     name="description"
                     class="input input--textarea"
                     required
-                    ngModel></textarea>
+                    ngModel
+                    #description="ngModel"></textarea>
+                <ng-container
+                    *ngIf="description.invalid && description.touched">
+                    <div
+                        class="donut-form-error"
+                        *ngIf="description.errors?.required">
+                        Description is required
+                    </div>
+                </ng-container>
             </label>
-
+            <button type="submit" class="btn btn--green">
+                <!-- [disabled]="form.invalid"-->
+                Submit
+            </button>
             <pre>{{ form.value | json }}</pre>
             <!--
                 {
@@ -171,4 +195,12 @@ export class ExampleFormComponent {
         'vanilla-sundae',
         'zesty-lemon',
     ];
+
+    handleSubmit(f: NgForm) {
+        if (f.valid) {
+            console.log(f.value);
+        } else {
+            f.form.markAllAsTouched();
+        }
+    }
 }
