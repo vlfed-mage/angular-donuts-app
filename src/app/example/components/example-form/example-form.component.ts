@@ -16,6 +16,9 @@ import { NgForm } from '@angular/forms';
                     minlength="5"
                     required
                     ngModel
+                    [ngModelOptions]="{
+                        updateOn: 'blur'
+                    } // change' | 'blur' | 'submit'"
                     #name="ngModel" />
                 <p>Possible cases</p>
                 <p>valid: {{ name.valid }}</p>
