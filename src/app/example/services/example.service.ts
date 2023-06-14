@@ -50,6 +50,8 @@ export class ExampleService {
 
     constructor() {}
 
+    // CRUD
+
     read() {
         return this.donuts;
     }
@@ -68,5 +70,24 @@ export class ExampleService {
             price: 0,
             description: '',
         };
+    }
+
+    create(payload: Donut) {
+        this.donuts = [...this.donuts, payload];
+        console.log(this.donuts);
+    }
+
+    update(payload: Donut) {
+        this.donuts = this.donuts.map((donut: Donut) =>
+            donut.id === payload.id ? payload : donut
+        );
+        console.log(this.donuts);
+    }
+
+    delete(payload: Donut) {
+        this.donuts = this.donuts.filter(
+            (donut: Donut) => donut.id !== payload.id
+        );
+        console.log(this.donuts);
     }
 }

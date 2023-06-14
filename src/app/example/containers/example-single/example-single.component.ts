@@ -12,7 +12,10 @@ import { ExampleService } from '../../services/example.service';
         <div>
             <example-form
                 [donut]="donut"
-                (create)="onCreate($event)"></example-form>
+                (create)="onCreate($event)"
+                (update)="onUpdate($event)"
+                (delete)="onDelete($event)">
+            </example-form>
         </div>
     `,
     styles: [],
@@ -23,12 +26,20 @@ export class ExampleSingleComponent implements OnInit {
     constructor(private exampleService: ExampleService) {}
 
     ngOnInit() {
-        const id = '3u98Kl';
+        const id = 'ae098s';
         // CRUD
         this.donut = this.exampleService.readOne(id);
     }
 
     onCreate(donut: Donut) {
-        console.log('onCreate', donut);
+        this.exampleService.create(donut);
+    }
+
+    onUpdate(donut: Donut) {
+        this.exampleService.update(donut);
+    }
+
+    onDelete(donut: Donut) {
+        this.exampleService.delete(donut);
     }
 }
