@@ -11,13 +11,13 @@ import { DonutCardComponent } from './components/donut-card/donut-card.component
 import { DonutFormComponent } from './components/donut-form/donut-form.component';
 
 @NgModule({
-    declarations: [
-        DonutListComponent,
-        DonutSingleComponent,
-        DonutCardComponent,
-        DonutFormComponent,
-    ],
-    imports: [CommonModule, FormsModule],
-    exports: [DonutListComponent, DonutSingleComponent],
+  declarations: [
+    DonutListComponent,
+    DonutSingleComponent,
+    DonutCardComponent,
+    DonutFormComponent,
+  ],
+  imports: [CommonModule, FormsModule],
+  exports: [DonutListComponent, DonutSingleComponent],
 })
 export class AdminModule {}

@@ -5,7 +5,7 @@ import { Donut } from '../../models/donut.model';
 @Component({
     selector: 'donut-form',
     template: `
-        <form class="donut-form" (ngSubmit)="handleSubmit(form)" #form="ngForm">
+        <form class="donut-form" #form="ngForm">
             <label>
                 <span>Name</span>
                 <input
@@ -112,7 +112,25 @@ import { Donut } from '../../models/donut.model';
                 </ng-container>
             </label>
 
-            <button type="submit" class="btn btn--green">Create</button>
+            <button
+                type="button"
+                class="btn btn--green"
+                (click)="handleCreate(form)">
+                Create
+            </button>
+            <button
+                type="button"
+                class="btn btn--green"
+                [disabled]="form.untouched"
+                (click)="handleUpdate(form)">
+                Update
+            </button>
+            <button
+                type="button"
+                class="btn btn--green"
+                (click)="handleDelete()">
+                Delete
+            </button>
             <button
                 type="button"
                 class="btn btn--grey"
@@ -125,9 +143,6 @@ import { Donut } from '../../models/donut.model';
                 *ngIf="form.valid && form.submitted">
                 Working...
             </div>
-
-            <pre>{{ donut | json }}</pre>
-            <pre>{{ form.value | json }}</pre>
         </form>
     `,
     styles: [
@@ -136,28 +151,23 @@ import { Donut } from '../../models/donut.model';
                 &-radios {
                     display: flex;
                     align-content: center;
-
                     &-label {
                         margin-right: 10px;
                     }
-
                     label {
                         display: flex;
                         align-items: center;
-
                         span {
                             color: #444;
                             margin-bottom: 0;
                         }
                     }
                 }
-
                 &-working {
                     font-size: 12px;
                     font-style: italic;
                     margin: 10px 0;
                 }
-
                 &-error {
                     font-size: 12px;
                     color: #e66262;
@@ -168,7 +178,10 @@ import { Donut } from '../../models/donut.model';
 })
 export class DonutFormComponent {
     @Input() donut!: Donut;
+
     @Output() create = new EventEmitter<Donut>();
+    @Output() update = new EventEmitter<Donut>();
+    @Output() delete = new EventEmitter<Donut>();
 
     icons: string[] = [
         'caramel-swirl',
@@ -180,11 +193,27 @@ export class DonutFormComponent {
         'zesty-lemon',
     ];
 
-    handleSubmit(form: NgForm) {
+    constructor() {}
+
+    handleCreate(form: NgForm) {
         if (form.valid) {
             this.create.emit(form.value);
         } else {
             form.form.markAllAsTouched();
+        }
+    }
+
+    handleUpdate(form: NgForm) {
+        if (form.valid) {
+            this.update.emit({ id: this.donut.id, ...form.value });
+        } else {
+            form.form.markAllAsTouched();
+        }
+    }
+
+    handleDelete() {
+        if (confirm(`Really delete ${this.donut.name}?`)) {
+            this.delete.emit({ ...this.donut });
         }
     }
 }
