@@ -4,6 +4,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Donut } from '../../models/example.model';
+import { ExampleService } from '../../services/example.service';
 
 @Component({
     selector: 'example-single',
@@ -19,15 +20,13 @@ import { Donut } from '../../models/example.model';
 export class ExampleSingleComponent implements OnInit {
     donut!: Donut;
 
+    constructor(private exampleService: ExampleService) {}
+
     ngOnInit() {
-        this.donut = {
-            id: 'y8z0As',
-            name: 'Just Chocolate',
-            icon: 'just-chocolate',
-            price: 119,
-            promo: 'limited',
-            description: 'For the pure chocoholic.',
-        };
+        const id = '3u98Kl';
+        this.donut = this.exampleService.donuts.find(
+            (donut: Donut) => donut.id === id
+        ) || { name: '', icon: '', price: 0, description: '' };
     }
 
     onCreate(donut: Donut) {

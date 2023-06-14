@@ -85,6 +85,7 @@ import { Donut } from '../../models/example.model';
                     </div>
                 </ng-container>
             </label>
+            {{ price }}
             <div class="donut-form-radios">
                 <p class="donut-form-radios-label">Promo:</p>
                 <label>
@@ -168,6 +169,8 @@ import { Donut } from '../../models/example.model';
             <!--
                 true / false
             -->
+
+            <pre>price: {{ price.value }}</pre>
         </form>
     `,
     styles: [

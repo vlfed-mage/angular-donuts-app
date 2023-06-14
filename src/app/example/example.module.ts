@@ -13,6 +13,9 @@ import { ExampleSingleComponent } from './containers/example-single/example-sing
 import { ExampleCardComponent } from './components/example-card/example-card.component';
 import { ExampleFormComponent } from './components/example-form/example-form.component';
 
+// services
+import { ExampleService } from './services/example.service';
+
 @NgModule({
     declarations: [
         ExampleListComponent,
@@ -21,6 +24,7 @@ import { ExampleFormComponent } from './components/example-form/example-form.com
         ExampleFormComponent,
     ],
     imports: [CommonModule, FormsModule],
+    providers: [ExampleService],
     exports: [ExampleListComponent, ExampleSingleComponent],
 })
 export class ExampleModule {}
