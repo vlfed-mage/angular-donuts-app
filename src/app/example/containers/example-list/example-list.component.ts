@@ -2,6 +2,7 @@
 // --dry-run you can use this flag for testing creation
 
 import { Component, OnInit } from '@angular/core';
+
 import { Donut } from '../../models/example.model';
 import { ExampleService } from '../../services/example.service';
 
@@ -57,7 +58,7 @@ export class ExampleListComponent implements OnInit {
     constructor(private exampleService: ExampleService) {}
 
     ngOnInit(): void {
-        this.donuts = this.exampleService.donuts;
+        this.donuts = this.exampleService.read();
     }
 
     trackById(index: number, value: Donut) {

@@ -24,9 +24,8 @@ export class ExampleSingleComponent implements OnInit {
 
     ngOnInit() {
         const id = '3u98Kl';
-        this.donut = this.exampleService.donuts.find(
-            (donut: Donut) => donut.id === id
-        ) || { name: '', icon: '', price: 0, description: '' };
+        // CRUD
+        this.donut = this.exampleService.readOne(id);
     }
 
     onCreate(donut: Donut) {
