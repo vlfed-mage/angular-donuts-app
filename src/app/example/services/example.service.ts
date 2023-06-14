@@ -2,12 +2,13 @@
 
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/example.model';
+import { retry } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ExampleService {
-    donuts: Donut[] = [
+    private donuts: Donut[] = [
         {
             id: 'y8z0As',
             name: 'Just Chocolate',
@@ -48,4 +49,24 @@ export class ExampleService {
     ];
 
     constructor() {}
+
+    read() {
+        return this.donuts;
+    }
+
+    readOne(id: string) {
+        const donut = this.read().find((donut: Donut) => donut.id === id);
+
+        if (donut) {
+            return donut;
+        }
+
+        return {
+            id,
+            name: '',
+            icon: '',
+            price: 0,
+            description: '',
+        };
+    }
 }
