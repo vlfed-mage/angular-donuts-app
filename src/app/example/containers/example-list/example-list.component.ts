@@ -5,11 +5,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { Donut } from '../../models/example.model';
 import { ExampleService } from '../../services/example.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'example-list',
     template: `
         <ng-container *ngIf="donuts.length; else nothing">
+            <!-- ng-container *ngIf="donuts$ | async as donuts; else nothing" -->
             <example-card
                 *ngFor="let donut of donuts; trackBy: trackById"
                 [donut]="donut">
@@ -54,11 +56,16 @@ import { ExampleService } from '../../services/example.service';
 })
 export class ExampleListComponent implements OnInit {
     donuts!: Donut[];
+    // donuts$!: Observable<Donut[]>;
 
     constructor(private exampleService: ExampleService) {}
 
     ngOnInit(): void {
-        this.donuts = this.exampleService.read();
+        this.exampleService
+            .read()
+            .subscribe((donuts: Donut[]) => (this.donuts = donuts));
+        // can be done in another way:
+        // this.donuts$ = this.exampleService.read()
     }
 
     trackById(index: number, value: Donut) {
