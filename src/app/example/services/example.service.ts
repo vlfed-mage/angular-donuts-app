@@ -3,7 +3,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { catchError, map, of, tap, throwError } from 'rxjs';
+import {
+    catchError,
+    delay,
+    map,
+    of,
+    retry,
+    retryWhen,
+    take,
+    tap,
+    throwError,
+} from 'rxjs';
 
 import { Donut } from '../models/example.model';
 
@@ -25,6 +35,15 @@ export class ExampleService {
             tap(donuts => {
                 this.donuts = donuts;
             }),
+            // retry(2), // retry 2 times
+            // retryWhen(errors => {
+            //     return errors.pipe(delay(1000), take(2)); // retry twice with delay 1 sec
+            // }), // deprecated. Will be removed in v9 or v10, use retry's delay option instead.
+            retry({
+                count: 1,
+                delay: 1000,
+            }), // retry with config options
+
             catchError(this.handleError)
         );
     }
