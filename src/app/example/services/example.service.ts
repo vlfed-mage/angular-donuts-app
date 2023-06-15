@@ -1,7 +1,11 @@
 // ng generate service example/services/donut
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+    HttpClient,
+    HttpErrorResponse,
+    HttpHeaders,
+} from '@angular/common/http';
 
 import {
     catchError,
@@ -31,7 +35,19 @@ export class ExampleService {
         if (this.donuts.length) {
             return of(this.donuts);
         }
-        return this.http.get<Donut[]>(`/api/donuts`).pipe(
+
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            // 'Api-Token': '1234abcd',
+        });
+
+        headers = headers.append('Api-Token', '1234abcd'); // for dynamic adding
+
+        const options = {
+            headers,
+        };
+
+        return this.http.get<Donut[]>(`/api/donuts`, options).pipe(
             tap(donuts => {
                 this.donuts = donuts;
             }),
