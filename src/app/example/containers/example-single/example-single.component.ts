@@ -27,7 +27,7 @@ export class ExampleSingleComponent implements OnInit {
 
     ngOnInit() {
         this.exampleService
-            .readOne('3u98Kl')
+            .readOne('l_GIdQL')
             .subscribe((donut: Donut) => (this.donut = donut));
     }
 
@@ -44,6 +44,8 @@ export class ExampleSingleComponent implements OnInit {
     }
 
     onDelete(donut: Donut) {
-        this.exampleService.delete(donut);
+        this.exampleService
+            .delete(donut)
+            .subscribe(() => console.log('Successfully deleted!'));
     }
 }
