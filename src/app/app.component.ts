@@ -36,7 +36,7 @@ import { Component, OnInit } from '@angular/core';
             <header class="header">
                 <img src="assets/img/logo.svg" alt="Donuts logo" class="logo" />
             </header>
-            <example-list></example-list>
+            <example-single></example-single>
         </div>
     `,
     styles: [
