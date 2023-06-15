@@ -27,12 +27,14 @@ export class ExampleSingleComponent implements OnInit {
 
     ngOnInit() {
         this.exampleService
-            .readOne('ae098s')
+            .readOne('xxx')
             .subscribe((donut: Donut) => (this.donut = donut));
     }
 
     onCreate(donut: Donut) {
-        this.exampleService.create(donut);
+        this.exampleService
+            .create(donut)
+            .subscribe(() => console.log('Successfully created!'));
     }
 
     onUpdate(donut: Donut) {
