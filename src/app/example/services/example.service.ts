@@ -55,10 +55,13 @@ export class ExampleService {
     }
 
     update(payload: Donut) {
-        this.donuts = this.donuts.map((donut: Donut) =>
-            donut.id === payload.id ? payload : donut
+        return this.http.put<Donut>(`/api/donuts/${payload.id}`, payload).pipe(
+            tap(donut => {
+                this.donuts = this.donuts.map((item: Donut) =>
+                    item.id === donut.id ? donut : item
+                );
+            })
         );
-        console.log(this.donuts);
     }
 
     delete(payload: Donut) {
