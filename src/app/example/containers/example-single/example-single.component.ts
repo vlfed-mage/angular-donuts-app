@@ -26,9 +26,7 @@ export class ExampleSingleComponent implements OnInit {
     constructor(private exampleService: ExampleService) {}
 
     ngOnInit() {
-        const id = 'ae098s';
-        // CRUD
-        this.donut = this.exampleService.readOne(id);
+        // this.donut = this.exampleService.readOne('ae098s');
     }
 
     onCreate(donut: Donut) {
