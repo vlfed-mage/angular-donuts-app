@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'example-list',
     template: `
-        <ng-container *ngIf="donuts.length; else nothing">
+        <ng-container *ngIf="donuts?.length; else nothing">
             <!-- ng-container *ngIf="donuts$ | async as donuts; else nothing" -->
             <example-card
                 *ngFor="let donut of donuts; trackBy: trackById"
@@ -55,7 +55,7 @@ import { Observable } from 'rxjs';
     styles: [],
 })
 export class ExampleListComponent implements OnInit {
-    donuts!: Donut[];
+    donuts: Donut[] = [];
     // donuts$!: Observable<Donut[]>;
 
     constructor(private exampleService: ExampleService) {}

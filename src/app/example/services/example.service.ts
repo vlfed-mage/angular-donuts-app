@@ -3,6 +3,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { of, tap } from 'rxjs';
+
 import { Donut } from '../models/example.model';
 
 @Injectable({
@@ -16,7 +18,14 @@ export class ExampleService {
     // CRUD
 
     read() {
-        return this.http.get<Donut[]>(`/api/donuts`);
+        if (this.donuts.length) {
+            return of(this.donuts);
+        }
+        return this.http.get<Donut[]>(`/api/donuts`).pipe(
+            tap(donuts => {
+                this.donuts = donuts;
+            })
+        );
         // return this.donuts;
     }
 
