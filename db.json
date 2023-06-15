@@ -36,14 +36,6 @@
       "icon": "zesty-lemon",
       "price": 129,
       "description": "Delicious lucious lemon."
-    },
-    {
-      "name": "New donut",
-      "icon": "vanilla-sundae",
-      "price": 227,
-      "promo": "limited",
-      "description": "Very expensive!",
-      "id": "l_GIdQL"
     }
   ]
 }
