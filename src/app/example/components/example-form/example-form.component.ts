@@ -9,7 +9,7 @@ import { Donut } from '../../models/example.model';
 @Component({
     selector: 'example-form',
     template: `
-        <form class="donut-form" #form="ngForm">
+        <form class="donut-form" #form="ngForm" *ngIf="donut; else loading">
             <label>
                 <span>Name</span>
                 <input
@@ -187,6 +187,8 @@ import { Donut } from '../../models/example.model';
 
             <pre>price: {{ price.value }}</pre>
         </form>
+
+        <ng-template #loading> Loading... </ng-template>
     `,
     styles: [
         `
