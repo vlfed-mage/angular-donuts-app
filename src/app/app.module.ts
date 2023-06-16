@@ -1,36 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { ExampleModule } from './example/example.module';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ExampleListComponent } from './example/containers/example-list/example-list.component';
-import { ExampleSingleComponent } from './example/containers/example-single/example-single.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {
-        path: 'admin',
-        children: [
-            { path: 'donuts', component: ExampleListComponent },
-            { path: 'donut', component: ExampleSingleComponent },
-            { path: '', pathMatch: 'full', redirectTo: 'donuts' },
-        ],
+        path: 'example',
+        loadChildren: () =>
+            import('./example/example.module').then(x => x.ExampleModule), // lazy-loading
     },
     {
         path: '',
         pathMatch: 'full', // full matching ('prefix' | 'full')
-        redirectTo: 'admin',
+        redirectTo: 'example',
     },
     {
         path: '**', // any not found path
-        redirectTo: 'admin',
+        redirectTo: 'example',
     },
 ];
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, RouterModule.forRoot(routes), ExampleModule],
+    imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
