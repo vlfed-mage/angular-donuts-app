@@ -9,8 +9,13 @@ import { ExampleListComponent } from './example/containers/example-list/example-
 import { ExampleSingleComponent } from './example/containers/example-single/example-single.component';
 
 export const routes: Routes = [
-    { path: '', component: ExampleListComponent },
-    { path: 'donut', component: ExampleSingleComponent },
+    {
+        path: 'admin',
+        children: [
+            { path: 'donuts', component: ExampleListComponent },
+            { path: 'donut', component: ExampleSingleComponent },
+        ],
+    },
 ];
 
 @NgModule({
