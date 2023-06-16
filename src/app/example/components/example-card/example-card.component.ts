@@ -7,8 +7,9 @@ import { Donut } from '../../models/example.model';
     selector: 'example-card',
     encapsulation: ViewEncapsulation.Emulated, // https://angular.io/guide/view-encapsulation
     template: `
-        <div
+        <a
             class="donut-card"
+            [routerLink]="donut.id"
             [style.border]="donut.promo ? '2px solid gray' : 'none'"
             [ngStyle]="{
                 'font-size.px': donut.promo ? 20 : 16
@@ -62,7 +63,7 @@ import { Donut } from '../../models/example.model';
                     <!-- https://angular.io/guide/pipes-overview -->
                 </p>
             </div>
-        </div>
+        </a>
     `,
     styles: [
         `
