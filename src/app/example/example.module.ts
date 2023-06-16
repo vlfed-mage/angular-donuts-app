@@ -14,12 +14,9 @@ import { ExampleSingleComponent } from './containers/example-single/example-sing
 import { ExampleCardComponent } from './components/example-card/example-card.component';
 import { ExampleFormComponent } from './components/example-form/example-form.component';
 
-// services
-import { ExampleService } from './services/example.service';
-
 export const routes: Routes = [
     { path: 'donuts', component: ExampleListComponent },
-    { path: 'donut', component: ExampleSingleComponent },
+    { path: 'donuts/new', component: ExampleSingleComponent },
     { path: '', pathMatch: 'full', redirectTo: 'donuts' },
 ];
 
@@ -31,7 +28,6 @@ export const routes: Routes = [
         ExampleFormComponent,
     ],
     imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
-    providers: [ExampleService],
     exports: [ExampleListComponent, ExampleSingleComponent],
 })
 export class ExampleModule {}
