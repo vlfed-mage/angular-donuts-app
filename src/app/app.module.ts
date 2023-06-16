@@ -14,7 +14,13 @@ export const routes: Routes = [
         children: [
             { path: 'donuts', component: ExampleListComponent },
             { path: 'donut', component: ExampleSingleComponent },
+            { path: '', pathMatch: 'full', redirectTo: 'donuts' },
         ],
+    },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'admin',
     },
 ];
 
