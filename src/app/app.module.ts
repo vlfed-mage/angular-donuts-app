@@ -19,7 +19,11 @@ export const routes: Routes = [
     },
     {
         path: '',
-        pathMatch: 'full',
+        pathMatch: 'full', // full matching ('prefix' | 'full')
+        redirectTo: 'admin',
+    },
+    {
+        path: '**', // any not found path
         redirectTo: 'admin',
     },
 ];
