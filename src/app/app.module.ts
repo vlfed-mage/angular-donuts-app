@@ -3,11 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ExampleModule } from './example/example.module';
-import { AdminModule } from './admin/admin.module';
+import { RouterModule, Routes } from '@angular/router';
+
+import { ExampleListComponent } from './example/containers/example-list/example-list.component';
+import { ExampleSingleComponent } from './example/containers/example-single/example-single.component';
+
+export const routes: Routes = [
+    { path: '', component: ExampleListComponent },
+    { path: 'donut', component: ExampleSingleComponent },
+];
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, ExampleModule, AdminModule],
+    imports: [BrowserModule, RouterModule.forRoot(routes), ExampleModule],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
