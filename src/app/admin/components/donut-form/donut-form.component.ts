@@ -115,12 +115,14 @@ import { Donut } from '../../models/donut.model';
             <button
                 type="button"
                 class="btn btn--green"
+                *ngIf="!isEdit"
                 (click)="handleCreate(form)">
                 Create
             </button>
             <button
                 type="button"
                 class="btn btn--green"
+                *ngIf="isEdit"
                 [disabled]="form.untouched"
                 (click)="handleUpdate(form)">
                 Update
@@ -128,12 +130,14 @@ import { Donut } from '../../models/donut.model';
             <button
                 type="button"
                 class="btn btn--green"
+                *ngIf="isEdit"
                 (click)="handleDelete()">
                 Delete
             </button>
             <button
                 type="button"
                 class="btn btn--grey"
+                *ngIf="form.touched || isEdit"
                 (click)="form.resetForm()">
                 Reset Form
             </button>
@@ -180,6 +184,7 @@ import { Donut } from '../../models/donut.model';
 })
 export class DonutFormComponent {
     @Input() donut!: Donut;
+    @Input() isEdit!: boolean;
 
     @Output() create = new EventEmitter<Donut>();
     @Output() update = new EventEmitter<Donut>();
