@@ -3,7 +3,10 @@
 // smart container
 
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { Donut } from '../../models/example.model';
+
 import { ExampleService } from '../../services/example.service';
 
 @Component({
@@ -23,11 +26,16 @@ import { ExampleService } from '../../services/example.service';
 export class ExampleSingleComponent implements OnInit {
     donut!: Donut;
 
-    constructor(private exampleService: ExampleService) {}
+    constructor(
+        private route: ActivatedRoute,
+        private exampleService: ExampleService
+    ) {}
 
     ngOnInit() {
+        const id = this.route.snapshot.paramMap.get('id');
+
         this.exampleService
-            .readOne('xxxxxx')
+            .readOne(id)
             .subscribe((donut: Donut) => (this.donut = donut));
     }
 

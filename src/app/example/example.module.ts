@@ -17,6 +17,7 @@ import { ExampleFormComponent } from './components/example-form/example-form.com
 export const routes: Routes = [
     { path: 'donuts', component: ExampleListComponent },
     { path: 'donuts/new', component: ExampleSingleComponent },
+    { path: 'donuts/:id', component: ExampleSingleComponent },
     { path: '', pathMatch: 'full', redirectTo: 'donuts' },
 ];
 
