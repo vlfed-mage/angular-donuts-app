@@ -1,7 +1,7 @@
 // ng generate interface admin/models/Donut model
 
 export interface Donut {
-    id?: string;
+    id?: string | null;
     name: string;
     icon: string;
     price: number;
