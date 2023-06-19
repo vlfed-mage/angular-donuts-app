@@ -74,7 +74,6 @@ export class ExampleService {
                 }
 
                 return {
-                    id,
                     name: '',
                     icon: '',
                     price: 0,

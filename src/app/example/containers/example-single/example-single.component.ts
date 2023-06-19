@@ -15,6 +15,7 @@ import { ExampleService } from '../../services/example.service';
         <div>
             <example-form
                 [donut]="donut"
+                [isEdit]="isEdit"
                 (create)="onCreate($event)"
                 (update)="onUpdate($event)"
                 (delete)="onDelete($event)">
@@ -25,6 +26,7 @@ import { ExampleService } from '../../services/example.service';
 })
 export class ExampleSingleComponent implements OnInit {
     donut!: Donut;
+    isEdit!: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -37,6 +39,8 @@ export class ExampleSingleComponent implements OnInit {
         this.exampleService
             .readOne(id)
             .subscribe((donut: Donut) => (this.donut = donut));
+
+        this.isEdit = this.route.snapshot.data['isEdit'];
     }
 
     onCreate(donut: Donut) {
