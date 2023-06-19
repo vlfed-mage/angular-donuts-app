@@ -32,17 +32,7 @@ export class DonutService {
             return of(this.donuts);
         }
 
-        let headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-        });
-
-        headers = headers.append('Api-Token', '1234abcd');
-
-        const options = {
-            headers,
-        };
-
-        return this.http.get<Donut[]>(`/api/donuts`, options).pipe(
+        return this.http.get<Donut[]>(`/api/donuts`).pipe(
             tap(donuts => {
                 this.donuts = donuts;
             }),
@@ -59,7 +49,7 @@ export class DonutService {
         );
     }
 
-    readOne(id: string) {
+    readOne(id: string | null) {
         return this.read().pipe(
             map(donuts => {
                 const donut = donuts.find((donut: Donut) => donut.id === id);
@@ -98,9 +88,9 @@ export class DonutService {
 
     delete(payload: Donut) {
         return this.http.delete<Donut>(`/api/donuts/${payload.id}`).pipe(
-            tap(donut => {
+            tap(() => {
                 this.donuts = this.donuts.filter(
-                    (item: Donut) => item.id !== donut.id
+                    (item: Donut) => item.id !== payload.id
                 );
             }),
             catchError(this.handleError)
