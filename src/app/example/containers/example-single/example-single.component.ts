@@ -3,7 +3,7 @@
 // smart container
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Donut } from '../../models/example.model';
 
@@ -30,6 +30,7 @@ export class ExampleSingleComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private exampleService: ExampleService
     ) {}
 
@@ -46,12 +47,14 @@ export class ExampleSingleComponent implements OnInit {
     onCreate(donut: Donut) {
         this.exampleService
             .create(donut)
-            .subscribe(() => console.log('Successfully created!'));
+            .subscribe(donut =>
+                this.router.navigate(['example', 'donuts', donut.id])
+            );
     }
 
     onUpdate(donut: Donut) {
         this.exampleService.update(donut).subscribe({
-            next: () => console.log('Successfully updated!'),
+            next: () => this.router.navigate(['example']),
             error: err => console.log('onUpdate error', err),
         });
     }
@@ -59,6 +62,6 @@ export class ExampleSingleComponent implements OnInit {
     onDelete(donut: Donut) {
         this.exampleService
             .delete(donut)
-            .subscribe(() => console.log('Successfully deleted!'));
+            .subscribe(() => this.router.navigate(['example']));
     }
 }
